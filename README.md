@@ -31,8 +31,12 @@
 環境に優しい情報をシェアしたいときや、他人がとっている行動や、環境に優しいお店やブランドを知りたいときなど。
 
 ## 設計書
-
-<...>
+ER図
+https://app.diagrams.net/#G13_DyPBqUNZRP4opK-hqT5517CoUI5LOt
+テーブル定義書
+https://docs.google.com/spreadsheets/d/1L90SL_H5saT0kRvAZRlnmBGPUIZsJnZNdjNW825Xs5I/edit#gid=65389702
+アプリケーション詳細設計
+https://docs.google.com/spreadsheets/d/1pc-TIVMug-ftUQmiwSwxX4_V5O26esmb90ahmE7CAJM/edit#gid=0
 
 ## チャレンジ要素一覧
 
