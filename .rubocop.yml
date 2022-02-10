@@ -1,0 +1,13 @@
+#.rubocop_todo.ymlの内容を反映できるようにする
+inherit_from: .rubocop_todo.yml
+
+#RuboCopの機能を拡張する
+require:
+ - rubocop-performance
+ - rubocop-rails
+ - rubocop-rspec
+ 
+#AllCopsオプションで全てのCopsを対象にできる
+AllCops:
+  NewCops: enable
+  #RuboCopのバージョンがあがった際に追加されたCopを自動で有効にできる。
