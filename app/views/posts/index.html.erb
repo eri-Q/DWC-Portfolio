@@ -1,5 +1,6 @@
 <h1>投稿一覧</h1>
 <% @posts.each do |post| %>
+  <%= image_tag post.image.variant(resize: '500x500'), class: 'post-image' if post.image.attached? %>
   <%= link_to post.title, post_path(post) %>
   <%= post.body %>
 <% end %>

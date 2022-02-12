@@ -1,4 +1,5 @@
 <h1>詳細ページ</h1>
+<%= image_tag @post.image.variant(resize: '500x500'), class: 'post-image' if @post.image.attached? %>
 <%= @post.title %>
 <%= @post.body %>
 
