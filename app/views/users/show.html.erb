@@ -1,0 +1,33 @@
+<div class="cover-user-show">
+  <div class="container">
+    <div class="row justify-content-center">
+      <% if user_signed_in? && @user == current_user %>
+      <h1 class="font-weight-normal mt-5 mb-5">マイページ</h1>
+      <%= @user.user_name %>
+      <% else %>
+      <h1 class="font-weight-normal mt-5 mb-5"><%= @user.user_name %>さんのページ</h1>
+      <% end %>
+    </div>
+    
+      <% if user_signed_in? && @user == current_user %>
+      <p class="d-flex justify-content-end">
+        <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %>
+      </p>
+      <% end %>
+      <div class="d-flex">
+      < %= image_tag @user.image.variant(resize: '300x300'), class: 'post-image' if @user.image.attached? %>
+      </div>
+ 
+    <div class="row justify-content-center">
+      <% @posts.each do |post| %>
+      <div class="one-post">
+        <%= link_to post_path(post) do %>
+        <%= image_tag post.image.variant(resize: '300x300'), class: 'post-image' if post.image.attached? %>
+        <p class="caption"><%= "#{post.comments.count} コメント" %></p>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <%= paginate @posts %>
+  </div>
+</div>
