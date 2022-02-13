@@ -1,8 +1,30 @@
 <h1>詳細ページ</h1>
 <%= image_tag @post.image.variant(resize: '500x500'), class: 'post-image' if @post.image.attached? %>
 <%= @post.title %>
-<%= @post.body %>
+<%= @post.body %></br>
 
-<%= link_to "編集", edit_post_path(@post) %>
+<% if @post.user == current_user %>
+  <%= link_to "編集", edit_post_path(@post), class: "btn btn-success mb-4" %>
 
-<%= link_to "削除", post_path(@post), method: :delete %>
+  <%= link_to "削除", post_path(@post), method: :delete, class: "btn-sm btn-danger" %>
+<% end %>
+
+<p>コメント</p>
+<%= form_with(model:[@post, @comment], local: true) do |f| %>
+  <%= f.text_area :comment, placeholder: "コメントする" %>
+  <%= f.submit "送信する", class: "btn btn-success mb-4" %>
+<% end %>
+
+<p>コメント件数 : <%= @comments.count %></p>
+<% @comments.each do |comment| %>
+  <%= comment.user.user_name %>
+  <%= comment.created_at.strftime('%Y/%m/%d') %></br>
+  <%= comment.comment %>
+  <% if comment.user == current_user %>
+    <!--< %= link_to "編集", edit_post_comment_path(comment), class: "btn btn-success" %>-->
+    <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn-sm btn-danger" %>
+  <% end %>
+<% end %>
+<%= paginate @comments %>
+
+
