@@ -3,4 +3,7 @@
   <%= image_tag post.image.variant(resize: '500x500'), class: 'post-image' if post.image.attached? %>
   <%= link_to post.title, post_path(post) %>
   <%= post.body %>
+  <p class="caption"><%= "#{post.comments.count} コメント" %></p>
 <% end %>
+
+<%= paginate @posts %>
