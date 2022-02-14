@@ -7,17 +7,17 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
   mount_uploader :image, ImageUploader
-  
+
   # foreigin_keyで参照先外部キーのカラムを指定
-  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
+  has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   # following_user:中間テーブルを通してfollowingモデルのフォローされる側を取得すること
   has_many :following_user, through: :follower, source: :followed # 自分がフォローしている人
   # follower_user:中間テーブルを通してfollowerモデルのフォローする側を取得すること
   has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている人
-  
+
   # ユーザーをフォローする
   def follow(user_id)
     follower.create(followed_id: user_id)

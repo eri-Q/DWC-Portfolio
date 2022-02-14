@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   def create
     # postを1つ見つけてコメントを作成し、コメントを保存したらその投稿詳細ページに戻る
     post = Post.find(params[:post_id])
@@ -27,8 +26,8 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:comment, :post_id, :user_id)
   end
-
 end
