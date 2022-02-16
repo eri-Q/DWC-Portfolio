@@ -1,0 +1,17 @@
+<p>コメント</p>
+<%= form_with(model:[post, comment], remote: true)  do |f| %>
+  <%= f.text_area :comment, placeholder: "コメントする" %>
+  <%= f.submit "送信する", class: "comment_btn btn-success mb-4" %>
+<% end %>
+
+<p>コメント件数 : <%= comments.count %></p>
+<% comments.each do |comment| %>
+  <%= comment.user.user_name %>
+  <%= comment.created_at.strftime('%Y/%m/%d') %></br>
+  <%= comment.comment %>
+  <% if comment.user == current_user %>
+    <!--< %= link_to "編集", edit_post_comment_path(comment), class: "btn btn-success" %>-->
+    <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, remote: true, class: "comment_btn btn-sm btn-danger" %>
+  <% end %>
+<% end %>
+<%= paginate comments %>

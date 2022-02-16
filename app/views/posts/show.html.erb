@@ -9,36 +9,14 @@
   <%= link_to "削除", post_path(@post), method: :delete, class: "btn-sm btn-danger" %>
 <% end %>
 
-<!--いいね機能-->
-<p class="caption">
-  <% if @post.favorited_by?(current_user) %>
-  <%= link_to post_favorites_path(@post), method: :delete, class: "favorite_btn" do %>
-   ♥<%= @post.favorites.count %> いいね
-  <% end %>
-  <% else %>
-   <%= link_to post_favorites_path(@post), method: :post, class: "favorite_btn" do %>
-    ♡<%= @post.favorites.count %> いいね
-   <% end %>
-  <% end %>
-</p>
+<div id="favorite_btn_<%= @post.id %>">
+  <%= render 'favorites/favorite', post: @post %>
+</div>
+
+<div id="comment_btn_<%= @post.id %>">
+  <%= render 'comments/comment', post: @post, comment: @comment, comments: @comments %>
+</div>
 
 
-<p>コメント</p>
-<%= form_with(model:[@post, @comment], local: true) do |f| %>
-  <%= f.text_area :comment, placeholder: "コメントする" %>
-  <%= f.submit "送信する", class: "btn btn-success mb-4" %>
-<% end %>
-
-<p>コメント件数 : <%= @comments.count %></p>
-<% @comments.each do |comment| %>
-  <%= comment.user.user_name %>
-  <%= comment.created_at.strftime('%Y/%m/%d') %></br>
-  <%= comment.comment %>
-  <% if comment.user == current_user %>
-    <!--< %= link_to "編集", edit_post_comment_path(comment), class: "btn btn-success" %>-->
-    <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn-sm btn-danger" %>
-  <% end %>
-<% end %>
-<%= paginate @comments %>
 
 

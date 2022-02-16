@@ -1,11 +1,10 @@
 class CommentsController < ApplicationController
   def create
     # postを1つ見つけてコメントを作成し、コメントを保存したらその投稿詳細ページに戻る
-    post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     comment = current_user.comments.new(comment_params)
-    comment.post_id = post.id
+    comment.post_id = @post.id
     comment.save
-    redirect_to post_path(post.id)
   end
 
   # def edit
@@ -22,7 +21,6 @@ class CommentsController < ApplicationController
   def destroy
     # commentをidやpost_idから見つけて削除し、その投稿詳細ページに戻る
     Comment.find_by(id: params[:id], post_id: params[:post_id]).destroy
-    redirect_to post_path(params[:post_id])
   end
 
   private
