@@ -1,0 +1,10 @@
+<h1>投稿一覧</h1>
+<% @posts.each do |post| %>
+  <%= image_tag post.image.variant(resize: '300x300'), class: 'post-image' if post.image.attached? %>
+  <%= link_to post.title, post_path(post) %>
+  <%= post.body %>
+  <%= post.user.user_name %>
+  <p class="caption"><%= "#{post.comments.count} コメント" %></p>
+<% end %>
+
+<%= paginate @posts %>
