@@ -1,3 +1,5 @@
+<%= render 'layouts/header' %>
+
 <div class="cover-user-show">
   <div class="container">
     <div class="row justify-content-center">
@@ -22,7 +24,7 @@
       <% end %>
     </p>
     <div class="d-flex">
-      < %= image_tag @user.image.variant(resize: '300x300'), class: 'post-image' if @user.image.attached? %>
+      <%= image_tag @user.image.variant(resize: '300x300'), class: 'post-image' if @user.image.attached? %>
     </div>
     <div class="d-flex">
      <%= link_to follows_user_path(@user) do %>
@@ -46,3 +48,5 @@
     <%= paginate @posts %>
   </div>
 </div>
+
+<%= render 'layouts/footer' %>

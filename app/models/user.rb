@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   mount_uploader :image, ImageUploader
+  has_one_attached :image
 
   # foreigin_keyで参照先外部キーのカラムを指定
   has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
