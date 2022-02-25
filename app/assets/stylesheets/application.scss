@@ -17,13 +17,26 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  background-color: #eae8e1;
+
+}
+
+.container {
+  flex: 1;
+}
+
 header {
+  width: 100%;
   background-color: #005500;
   margin-bottom: 30px;
 }
 
 footer {
-  margin-top: 50px;
+  width: 100%;
   background-color: #005500;
   text-align: center;
 }
