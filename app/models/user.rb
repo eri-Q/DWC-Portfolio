@@ -34,7 +34,7 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
-  #設定した環境変数の呼び出し
+  # 設定した環境変数の呼び出し
   ENV['KEY']
   ENV['SECRET_KEY']
 end

@@ -1,19 +1,26 @@
-<%= render 'layouts/header' %>
+<form class="new-post">
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">新規投稿</h1>
+  </div>
 
-<h1>新規投稿</h1>
-<%= form_with model:@post, url: posts_path, local:true do |f| %>
+  <%= form_with model:@post, url: posts_path, local:true do |f| %>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+  <div class="form-label-group">
+    <h6>タイトル</h6>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
 
-  <h4>画像</h4>
-  <%= f.file_field :image %>
+  <div class="form-label-group">
+    <h6>画像</h6>
+    <%= f.file_field :image %>
+  </div>
 
-  <h4>本文</h4>
-  <%= f.text_area :body %>
+  <div class="form-label-group">
+    <h6>本文</h6>
+    <%= f.text_area :body, class: "form-control" %></br>
+  </div>
 
-  <%= f.submit '投稿' %>
+  <%= f.submit '投稿', class: "btn btn-outline-success btn-block" %>
 
 <% end %>
-
-<%= render 'layouts/footer' %>
+</form>
