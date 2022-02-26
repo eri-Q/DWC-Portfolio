@@ -20,4 +20,9 @@ class Post < ApplicationRecord
 
   # 各レコードとファイルを1対1の関係で紐づけるメソッド
   has_one_attached :image
+
+  # 投稿する際のバリデーション設定
+  validates :title, presence: true, length: { maximum: 100 }
+  validates :body, presence: true, length: { maximum: 500 }
+  validates :image, presence: true
 end
