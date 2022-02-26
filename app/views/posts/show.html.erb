@@ -1,34 +1,39 @@
-<%= render 'layouts/header' %>
-
-<div class="container col-xs-6">
+<div class="container">
   <div class="row">
-　　<div class="col-xs-12 mt-3">
-      <h4>詳細ページ</h4>
+　　<div class="col-lg-12">
+      <h3>詳細ページ</h3>
     </div>
-    <div class="col-xs-12 mt-5">
-      <%= image_tag @post.image.variant(resize: '500x500'), class: 'post-image' if @post.image.attached? %>
-      <%= @post.title %></br>
+  </div>
+  <div class="row">
+    <div class="col-lg-5">
+      <%= image_tag @post.image.variant(resize: '400x400'), class: 'post-image' if @post.image.attached? %>
+    </div>
+    <div class="col-lg-7">
+      <h5 class="font-weight-bold"><%= @post.title%></h5></br>
       <%= @post.body %>
     </div>
-    <div class="col-xs-12 mt-1">
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-5">
       <% if @post.user == current_user %>
-        <%= link_to "編集", edit_post_path(@post), class: "btn btn-success mb-4" %>
+        <%= link_to "編集", edit_post_path(@post), class: "btn-sm btn-success" %>
 
         <%= link_to "削除", post_path(@post), method: :delete, class: "btn-sm btn-danger" %>
       <% end %>
     </div>
-
-
-    <div id="favorite_btn_<%= @post.id %>">
+  </div>
+  <div class="row">
+    <div class="col-xs-2">
+      <div id="favorite_btn_<%= @post.id %>">
       <%= render 'favorites/favorite', post: @post %>
-    </div>
-
-    <div id="comment_btn_<%= @post.id %>">
-      <%= render 'comments/comment', post: @post, comment: @comment, comments: @comments %>
+      </div>
     </div>
   </div>
+  <div class="row">
+      <div id="comment_btn_<%= @post.id %>">
+      <%= render 'comments/comment', post: @post, comment: @comment, comments: @comments %>
+      </div>
+  </div>
 </div>
-
-<%= render 'layouts/footer' %>
-
-
