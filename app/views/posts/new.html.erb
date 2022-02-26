@@ -1,9 +1,9 @@
-<form class="new-post">
+<div class="container">
   <div class="text-center mb-4">
-    <h1 class="h3 mb-3 font-weight-normal">新規投稿</h1>
+    <h3 class="font-weight-normal">新規投稿</h3>
   </div>
 
-  <%= form_with model:@post, url: posts_path, local:true do |f| %>
+  <%= form_with model: @post, url: posts_path, local: true do |f| %>
 
   <div class="form-label-group">
     <h6>タイトル</h6>
@@ -22,5 +22,5 @@
 
   <%= f.submit '投稿', class: "btn btn-outline-success btn-block" %>
 
-<% end %>
-</form>
+  <% end %>
+</div>

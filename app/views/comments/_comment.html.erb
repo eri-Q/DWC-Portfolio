@@ -6,11 +6,13 @@
 
 <p>コメント件数 : <%= comments.count %></p>
 <% comments.each do |comment| %>
-  <%= comment.user.user_name %>
-  <%= comment.created_at.strftime('%Y/%m/%d') %></br>
-  <%= comment.comment %>
-  <% if comment.user == current_user %>
-    <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, remote: true, class: "comment_btn btn-sm btn-danger" %>
-  <% end %>
+  <div class="col-lg-12">
+    <%= comment.comment %>
+    <%= comment.user.user_name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <% if comment.user == current_user %>
+      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, remote: true, class: "comment_btn btn-sm btn-danger" %>
+    <% end %>
+  </div>
 <% end %>
 <%= paginate comments %>

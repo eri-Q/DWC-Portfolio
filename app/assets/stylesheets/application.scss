@@ -25,7 +25,7 @@ body {
 
 }
 
-.container {
+.main, .container {
   flex: 1;
 }
 
@@ -43,4 +43,9 @@ footer {
 
 .nav-item {
   padding: 10px;
+}
+
+.caption {
+  decoration: none;
+  color: black;
 }
