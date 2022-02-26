@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments.page(params[:page]).per(7).reverse_order
+    @comments = @post.comments.page(params[:page]).per(6).reverse_order
   end
 
   def edit
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:search])
+    @posts = Post.search(params[:search]).reverse_order
   end
 
   private
