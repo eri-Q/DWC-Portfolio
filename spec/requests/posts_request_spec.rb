@@ -18,7 +18,7 @@ RSpec.describe 'postコントローラーのテスト', type: :request do
         expect(response.status).to eq 200
       end
 
-      it 'タイトルが正しく表示されていること' do
+      it '投稿一覧’ がレスポンスされること' do
         expect(response.body).to include('投稿一覧')
       end
     end
@@ -30,7 +30,7 @@ RSpec.describe 'postコントローラーのテスト', type: :request do
         get posts_path(user)
       end
 
-      it 'リクエストは401 OKとなること' do
+      it 'レスポンスは 401 になる' do
         expect(response.status).to eq 401
       end
     end
