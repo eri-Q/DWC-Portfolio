@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   def index
     @posts = Post.page(params[:page]).per(9).reverse_order
+    @tag_list = Tag.all
   end
 
   def new
@@ -10,7 +11,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    # 受け取った値を,で区切って配列にす
+    tag_list = params[:post][:name].split(',')
     if @post.save
+      @post.save_tag(tag_list)
       redirect_to post_path(@post.id)
     else
       render :new
@@ -21,6 +25,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.page(params[:page]).per(6).reverse_order
+    @post_tags = @post.tags
   end
 
   def edit
