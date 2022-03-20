@@ -11,8 +11,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    # 受け取った値を,で区切って配列にす
-    tag_list = params[:post][:name].split(',')
+    tag_list = params[:post][:tag_name].split(nill)
     if @post.save
       @post.save_tag(tag_list)
       redirect_to post_path(@post.id)
