@@ -27,21 +27,14 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 100 }
   validates :body, presence: true, length: { maximum: 500 }
   validates :image, presence: true
-  
+
   def save_tag(sent_tags)
-    # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
-    # 現在取得したタグから送られてきたタグを除いてoldtagとする
     old_tags = current_tags - sent_tags
-    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
     new_tags = sent_tags - current_tags
-　  
-　  # 古いタグを消す
     old_tags.each do |old|
       self.post_tags.delete PostTag.find_by(tag_name: old)
     end
-　  
-　  # 新しいタグを保存
     new_tags.each do |new|
       new_post_tag = PostTag.find_or_create_by(tag_name: new)
       self.post_tags << new_post_tag
