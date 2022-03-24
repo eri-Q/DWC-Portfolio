@@ -27,6 +27,12 @@
     <%= f.text_area :body, class: "form-control" %></br>
   </div>
 
+  <div class="form-label-group">
+    <p>スペースを入力することで複数のタグを付けることができます。</p>
+    <p>例：オーガニック 野菜 健康</p>
+    <%= f.text_field :tag_name %>
+  </div>
+
   <%= f.submit '投稿', class: "btn btn-outline-success btn-block" %>
 
   <% end %>

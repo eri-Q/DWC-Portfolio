@@ -12,6 +12,11 @@
       <h5 class="font-weight-bold"><%= @post.title%></h5></br>
       <%= @post.body %>
     </div>
+    <div>
+      <% @post_tags.each do |tag| %>
+        <%=tag.name%><%="(#{tag.posts.count})" %>
+      <% end %>
+    </div>
   </div>
 </div>
 <div class="container">
